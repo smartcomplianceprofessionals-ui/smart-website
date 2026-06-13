@@ -1,234 +1,602 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMART Compliance Professionals — Taxation, GST & Compliance Advisory</title>
+<meta name="description" content="Chartered accountancy and compliance services in Delhi NCR — Income Tax, GST, Payroll, ROC, Virtual CFO and ITR filing for businesses, startups and salaried employees.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0d2b8a;        /* brand navy */
+  --ink-2:#0a2068;      /* deeper navy */
+  --seal:#d32f2f;       /* brand red (logo mid) */
+  --gold:#c8a24a;       /* restrained trust accent */
+  --paper:#fbfcfe;      /* page */
+  --card:#ffffff;
+  --rule:#e3e8f5;       /* hairline ledger rules */
+  --ink-soft:#42527a;   /* secondary text */
+  --muted:#6b7790;
+  --shadow:0 14px 40px rgba(13,43,138,.10);
+  --shadow-sm:0 4px 14px rgba(13,43,138,.07);
+  --wa:#25d366;
+  --maxw:1180px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--paper);
+  color:#16203a;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+h1,h2,h3,.display{font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:1.1;letter-spacing:-.01em}
+a{color:inherit}
+img{max-width:100%;display:block}
 
-<title>SMART Compliance Professionals</title>
+/* ── Eyebrow (ledger entry marker) ── */
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'Inter',sans-serif;font-size:12px;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--seal);
+  margin-bottom:16px;
+}
+.eyebrow::before{content:attr(data-no);font-variant-numeric:tabular-nums;color:var(--ink);
+  background:#eef2fb;border:1px solid var(--rule);border-radius:5px;padding:2px 7px;letter-spacing:.05em}
 
-<link rel="stylesheet" href="style.css">
+/* ── Top bar ── */
+.topbar{background:var(--ink-2);color:#cdd9f5;font-size:12.5px}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;height:38px;flex-wrap:wrap}
+.topbar a{text-decoration:none;color:#cdd9f5;transition:color .15s}
+.topbar a:hover{color:#fff}
+.topbar .tb-right{display:flex;gap:20px;align-items:center}
 
+/* ── Nav ── */
+header.site{position:sticky;top:0;z-index:900;background:rgba(251,252,254,.88);
+  backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--rule)}
+nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+.brand{display:flex;align-items:center;gap:13px;text-decoration:none}
+.brand .mark{width:46px;height:46px;flex:none;border-radius:11px;
+  background:linear-gradient(140deg,var(--ink),var(--ink-2));
+  display:grid;place-items:center;color:#fff;font-family:'Fraunces',serif;font-weight:700;font-size:20px;
+  box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+.brand .mark::after{content:"";position:absolute;left:0;right:0;top:50%;height:3px;background:var(--seal);transform:translateY(-50%)}
+.brand .bt{line-height:1.15}
+.brand .bt b{font-family:'Fraunces',serif;font-weight:700;font-size:17px;color:var(--ink);letter-spacing:-.01em;display:block}
+.brand .bt span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.brand .red{color:var(--seal)}
+.navlinks{display:flex;align-items:center;gap:30px}
+.navlinks a{text-decoration:none;font-weight:500;font-size:14.5px;color:var(--ink-soft);position:relative;padding:4px 0;transition:color .15s}
+.navlinks a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--seal);transition:width .22s}
+.navlinks a:hover{color:var(--ink)}
+.navlinks a:hover::after{width:100%}
+.nav-cta{background:var(--ink);color:#fff!important;padding:10px 18px;border-radius:8px;font-weight:600;font-size:14px;
+  box-shadow:var(--shadow-sm);transition:transform .15s,background .15s}
+.nav-cta:hover{background:var(--ink-2);transform:translateY(-1px)}
+.nav-cta::after{display:none}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px}
+.burger span{width:24px;height:2px;background:var(--ink);border-radius:2px;transition:.2s}
+
+/* ── Hero ── */
+.hero{position:relative;padding:84px 0 70px;overflow:hidden}
+.hero::before{/* faint ledger column lines */
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5;
+  background-image:linear-gradient(90deg,var(--rule) 1px,transparent 1px);
+  background-size:calc((100% - 0px)/6) 100%;
+  -webkit-mask-image:linear-gradient(to bottom,transparent,#000 16%,#000 70%,transparent);
+          mask-image:linear-gradient(to bottom,transparent,#000 16%,#000 70%,transparent);
+}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:54px;align-items:center}
+.hero h1{font-size:clamp(38px,5.4vw,62px);color:var(--ink);margin-bottom:18px}
+.hero h1 .ink-line{position:relative;white-space:nowrap}
+.hero h1 .ink-line::after{content:"";position:absolute;left:0;bottom:6px;height:10px;width:100%;
+  background:rgba(200,162,74,.32);z-index:-1;transform-origin:left;transform:scaleX(0);
+  animation:draw 1s .5s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes draw{to{transform:scaleX(1)}}
+.hero p.lead{font-size:18px;color:var(--ink-soft);max-width:540px;margin-bottom:30px}
+.hero .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:30px}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:14px 24px;border-radius:9px;
+  font-weight:600;font-size:15px;text-decoration:none;border:1px solid transparent;cursor:pointer;
+  transition:transform .15s,box-shadow .15s,background .15s}
+.btn-primary{background:var(--seal);color:#fff;box-shadow:0 8px 22px rgba(211,47,47,.28)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(211,47,47,.36)}
+.btn-ghost{background:#fff;color:var(--ink);border-color:var(--rule);box-shadow:var(--shadow-sm)}
+.btn-ghost:hover{transform:translateY(-2px);border-color:var(--ink)}
+.trustline{display:flex;align-items:center;gap:9px;font-size:13.5px;color:var(--muted)}
+.trustline .dot{width:7px;height:7px;border-radius:50%;background:var(--gold)}
+
+/* Hero ledger card */
+.ledger{background:var(--card);border:1px solid var(--rule);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
+.ledger .lh{background:var(--ink);color:#fff;padding:16px 22px;display:flex;justify-content:space-between;align-items:center}
+.ledger .lh b{font-family:'Fraunces',serif;font-size:16px;font-weight:600}
+.ledger .lh span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#aebde8}
+.ledger .row{display:flex;justify-content:space-between;align-items:center;padding:15px 22px;border-bottom:1px solid var(--rule)}
+.ledger .row:last-child{border-bottom:0}
+.ledger .row .l{font-size:14.5px;color:var(--ink-soft);display:flex;align-items:center;gap:10px}
+.ledger .row .l .ic{width:30px;height:30px;border-radius:8px;background:#eef2fb;display:grid;place-items:center;color:var(--ink);font-size:15px}
+.ledger .row .v{font-weight:600;color:var(--ink);font-size:14.5px}
+.ledger .foot{padding:14px 22px;background:#f7f9fe;font-size:12.5px;color:var(--muted);text-align:center}
+
+/* ── Stats strip ── */
+.stats{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);background:#fff}
+.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:34px 20px;text-align:center;border-right:1px solid var(--rule)}
+.stat:last-child{border-right:0}
+.stat .n{font-family:'Fraunces',serif;font-size:40px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1}
+.stat .n .u{color:var(--seal)}
+.stat .lbl{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+
+/* ── Section base ── */
+section.block{padding:88px 0}
+.sec-head{max-width:680px;margin-bottom:48px}
+.sec-head h2{font-size:clamp(28px,3.6vw,40px);color:var(--ink);margin-bottom:12px}
+.sec-head p{color:var(--ink-soft);font-size:16.5px}
+
+/* ── Services ── */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);
+  border:1px solid var(--rule);border-radius:16px;overflow:hidden}
+.svc{background:var(--card);padding:30px 28px;transition:background .2s}
+.svc:hover{background:#f7f9fe}
+.svc .num{font-variant-numeric:tabular-nums;font-size:12px;font-weight:600;letter-spacing:.1em;color:var(--seal)}
+.svc h3{font-size:20px;color:var(--ink);margin:12px 0 8px}
+.svc p{font-size:14.5px;color:var(--ink-soft)}
+.svc .tags{margin-top:14px;display:flex;flex-wrap:wrap;gap:7px}
+.svc .tags span{font-size:11.5px;background:#eef2fb;color:var(--ink);border:1px solid var(--rule);padding:3px 9px;border-radius:20px}
+
+/* ── Why us (ledger rows) ── */
+.why{background:var(--ink);color:#fff}
+.why .sec-head h2{color:#fff}
+.why .sec-head p{color:#bccbf0}
+.why .eyebrow::before{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#fff}
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.14);border-radius:16px;overflow:hidden}
+.why-card{background:var(--ink);padding:30px 30px;display:flex;gap:18px}
+.why-card .ix{width:46px;height:46px;flex:none;border-radius:11px;background:rgba(255,255,255,.08);
+  display:grid;place-items:center;font-size:22px}
+.why-card h3{font-size:18px;color:#fff;margin-bottom:6px}
+.why-card p{font-size:14px;color:#bccbf0}
+
+/* ── Software callout ── */
+.software{background:linear-gradient(135deg,#fff,#f3f6fd);border:1px solid var(--rule);
+  border-radius:20px;padding:48px;display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;box-shadow:var(--shadow)}
+.software h2{font-size:clamp(26px,3.4vw,36px);color:var(--ink);margin-bottom:14px}
+.software p{color:var(--ink-soft);font-size:16px;margin-bottom:24px}
+.software ul{list-style:none;display:grid;gap:11px;margin-bottom:28px}
+.software li{display:flex;gap:11px;align-items:flex-start;font-size:14.5px;color:var(--ink-soft)}
+.software li::before{content:"✓";color:var(--seal);font-weight:700;flex:none}
+.sw-visual{background:var(--ink);border-radius:16px;padding:26px;color:#fff;box-shadow:var(--shadow)}
+.sw-visual .badge{display:inline-block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  background:rgba(255,255,255,.1);padding:4px 11px;border-radius:20px;color:#aebde8;margin-bottom:16px}
+.sw-visual .scr{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:11px;padding:16px}
+.sw-visual .scr .ln{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:13px}
+.sw-visual .scr .ln:last-child{border-bottom:0}
+.sw-visual .scr .ln .g{color:#9fe6c0}
+
+/* ── Corporate program ── */
+.corp{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.corp ul{list-style:none;display:grid;gap:14px;margin-top:8px}
+.corp li{background:#fff;border:1px solid var(--rule);border-left:3px solid var(--seal);
+  border-radius:10px;padding:16px 20px;font-size:15px;color:var(--ink-soft);box-shadow:var(--shadow-sm)}
+.corp li b{color:var(--ink);display:block;font-weight:600;font-size:15px}
+
+/* ── Enquiry / Contact ── */
+.contact{background:#fff;border-top:1px solid var(--rule)}
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:start}
+.cinfo h2{font-size:clamp(28px,3.4vw,38px);color:var(--ink);margin-bottom:14px}
+.cinfo p.intro{color:var(--ink-soft);font-size:16px;margin-bottom:28px}
+.cinfo .item{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--rule)}
+.cinfo .item .ic{width:42px;height:42px;flex:none;border-radius:10px;background:#eef2fb;display:grid;place-items:center;color:var(--ink);font-size:18px}
+.cinfo .item .t b{display:block;color:var(--ink);font-size:15px}
+.cinfo .item .t span{color:var(--muted);font-size:14px}
+.cinfo .item a{color:var(--ink);text-decoration:none;font-weight:600}
+.form{background:var(--card);border:1px solid var(--rule);border-radius:18px;padding:34px;box-shadow:var(--shadow)}
+.form h3{font-size:21px;color:var(--ink);margin-bottom:6px}
+.form .sub{font-size:13.5px;color:var(--muted);margin-bottom:22px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:13px;font-weight:600;color:var(--ink-soft);margin-bottom:6px}
+.field label .req{color:var(--seal)}
+.field input,.field select,.field textarea{width:100%;padding:12px 14px;border:1.5px solid var(--rule);
+  border-radius:9px;font:inherit;font-size:14.5px;color:#16203a;background:#fff;transition:border-color .15s,box-shadow .15s}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--ink);
+  box-shadow:0 0 0 3px rgba(13,43,138,.1)}
+.field textarea{resize:vertical;min-height:92px}
+.form .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+.form .actions .btn{flex:1;justify-content:center;min-width:150px}
+.btn-wa{background:var(--wa);color:#fff;box-shadow:0 8px 20px rgba(37,211,102,.3)}
+.btn-wa:hover{transform:translateY(-2px)}
+.note{font-size:12px;color:var(--muted);margin-top:14px;text-align:center}
+.formmsg{display:none;margin-top:16px;padding:13px 16px;border-radius:9px;font-size:14px}
+.formmsg.ok{display:block;background:#e9f7ee;border:1px solid #b6e3c6;color:#1c7a43}
+.formmsg.err{display:block;background:#fdeaea;border:1px solid #f2c0c0;color:#b02525}
+
+/* ── Footer ── */
+footer.site{background:var(--ink-2);color:#bccbf0;padding:54px 0 28px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:36px}
+footer .brand .bt b{color:#fff}
+footer .brand .bt span{color:#8ea2d8}
+footer p.fdesc{font-size:14px;color:#9fb0dc;margin-top:14px;max-width:330px}
+.fcol h4{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#fff;margin-bottom:16px}
+.fcol a{display:block;text-decoration:none;color:#bccbf0;font-size:14px;padding:5px 0;transition:color .15s}
+.fcol a:hover{color:#fff}
+.fbot{border-top:1px solid rgba(255,255,255,.12);padding-top:22px;display:flex;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;font-size:13px;color:#8ea2d8}
+.fbot .disc{max-width:680px}
+
+/* ── WhatsApp float ── */
+.wa-float{position:fixed;bottom:22px;right:22px;z-index:950;background:var(--wa);color:#fff;
+  display:flex;align-items:center;gap:10px;padding:13px 20px 13px 16px;border-radius:50px;
+  text-decoration:none;font-weight:600;font-size:15px;box-shadow:0 10px 26px rgba(37,211,102,.4);
+  transition:transform .18s}
+.wa-float:hover{transform:scale(1.05)}
+.wa-float svg{width:24px;height:24px;flex:none}
+.wa-float .pulse{position:absolute;inset:0;border-radius:50px;box-shadow:0 0 0 0 rgba(37,211,102,.5);
+  animation:pulse 2.2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+
+/* ── Reveal on scroll (progressive enhancement only) ── */
+.js-reveal .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.js-reveal .reveal.in{opacity:1;transform:none}
+
+/* ── Responsive ── */
+@media(max-width:960px){
+  .hero .wrap{grid-template-columns:1fr;gap:38px}
+  .ledger{max-width:460px}
+  .software,.corp,.contact-grid{grid-template-columns:1fr;gap:32px}
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:680px){
+  .navlinks{position:fixed;inset:74px 0 auto 0;background:var(--paper);flex-direction:column;
+    gap:0;padding:8px 0;border-bottom:1px solid var(--rule);box-shadow:var(--shadow);
+    transform:translateY(-120%);transition:transform .25s;align-items:stretch}
+  .navlinks.open{transform:none}
+  .navlinks a{padding:13px 24px;font-size:16px}
+  .navlinks a::after{display:none}
+  .nav-cta{margin:8px 24px}
+  .burger{display:flex}
+  .stats .wrap{grid-template-columns:1fr 1fr}
+  .stat:nth-child(2){border-right:0}
+  .stat{border-bottom:1px solid var(--rule)}
+  .svc-grid{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .frow{grid-template-columns:1fr}
+  .software{padding:32px 24px}
+  section.block{padding:64px 0}
+  .topbar .tb-left{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
 </head>
-
 <body>
 
-<a href="https://wa.me/919650073610" class="whatsapp-btn">
-WhatsApp
-</a>
+<!-- ── Top bar ── -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="tb-left">Delhi NCR · PAN-India Services · Mon–Sat 10:00–19:00</div>
+    <div class="tb-right">
+      <a href="tel:+918285159604">📞 +91 82851 59604</a>
+      <a href="mailto:smartcomplianceprofessionals@gmail.com">✉ Email</a>
+    </div>
+  </div>
+</div>
 
-<header>
-
-<img src="SMART_Logo-final.png" class="logo">
-
-<h1>SMART Compliance Professionals</h1>
-
-<p class="tagline">
-Your Trusted Partner for Taxation, Compliance & Business Advisory
-</p>
-
+<!-- ── Header / nav ── -->
+<header class="site">
+  <div class="wrap">
+    <nav>
+      <a href="#home" class="brand" aria-label="SMART Compliance Professionals home">
+        <span class="mark">S</span>
+        <span class="bt">
+          <b>SMART <span class="red">Compliance</span> Professionals</b>
+          <span>Chartered Accountancy &amp; Advisory</span>
+        </span>
+      </a>
+      <div class="navlinks" id="navlinks">
+        <a href="#services">Services</a>
+        <a href="#software">ITR Filing</a>
+        <a href="#corporate">Corporate</a>
+        <a href="#why">Why Us</a>
+        <a href="#contact">Contact</a>
+        <a href="#contact" class="nav-cta">Free Consultation</a>
+      </div>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
 </header>
 
-<nav>
-
-<a href="#home">Home</a>
-
-<a href="#services">Services</a>
-  <section>
-
-<h2>Why Choose SMART Compliance Professionals?</h2>
-
-<div class="why-us">
-
-<div class="why-card">
-<h3>15+ Years Experience</h3>
-<p>Extensive expertise in taxation, payroll and corporate compliance.</p>
-</div>
-
-<div class="why-card">
-<h3>Corporate Expertise</h3>
-<p>Serving startups, SMEs, corporates and salaried employees.</p>
-</div>
-
-<div class="why-card">
-<h3>Quick Response</h3>
-<p>Dedicated WhatsApp and email support for faster resolution.</p>
-</div>
-
-<div class="why-card">
-<h3>End-to-End Compliance</h3>
-<p>One destination for GST, Income Tax, ROC, Payroll and Advisory.</p>
-</div>
-
-</div>
-
-</section>
-
-<a href="#itr">ITR Filing</a>
-
-<a href="#corporate">Corporate Program</a>
-
-<a href="#contact">Contact</a>
-
-</nav>
-
+<!-- ── Hero ── -->
 <section class="hero" id="home">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" data-no="01">Taxation · Compliance · Advisory</span>
+      <h1>Compliance, kept <span class="ink-line">precise</span>.<br>Books, kept clean.</h1>
+      <p class="lead">Professional Income Tax, GST, Payroll and ROC services for businesses, startups and salaried employees across India — handled end to end, with the accuracy your books deserve.</p>
+      <div class="cta-row">
+        <a href="#contact" class="btn btn-primary">Book a free consultation →</a>
+        <a href="https://scp-itr.smartcomplianceprofessionals.workers.dev/" target="_blank" rel="noopener" class="btn btn-ghost">Open ITR filing portal</a>
+      </div>
+      <div class="trustline"><span class="dot"></span> 15+ years of practice · 500+ returns filed · trusted by 100+ businesses</div>
+    </div>
 
-<h2>
-Income Tax | GST | Payroll | ROC | Compliance
-</h2>
-
-<p>
-Professional Chartered Accountant Services for Businesses, Startups and Salaried Employees.
-</p>
-
-<a href="https://docs.google.com/forms/d/e/1FAIpQLSfLGc_DjxNss-XPrFPyTwvD-JqWlWHwCRqh7jtbWu-wNI2lxw/viewform"
-target="_blank"
-class="btn">
-
-Start ITR Registration
-
-</a>
-
+    <!-- Signature: a ledger card -->
+    <div class="ledger reveal">
+      <div class="lh"><b>Compliance Ledger</b><span>FY 2025-26</span></div>
+      <div class="row"><span class="l"><span class="ic">₹</span> Income Tax &amp; ITR filing</span><span class="v">Open</span></div>
+      <div class="row"><span class="l"><span class="ic">%</span> GST returns &amp; advisory</span><span class="v">Monthly</span></div>
+      <div class="row"><span class="l"><span class="ic">₹</span> Payroll · PF · ESIC · TDS</span><span class="v">Managed</span></div>
+      <div class="row"><span class="l"><span class="ic">§</span> ROC &amp; secretarial</span><span class="v">On time</span></div>
+      <div class="foot">Every obligation tracked, reconciled and filed before the due date.</div>
+    </div>
+  </div>
 </section>
 
-<section class="stats">
-
-<div class="card">
-<h3>15+</h3>
-<p>Years Experience</p>
+<!-- ── Stats ── -->
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><div class="n">15<span class="u">+</span></div><div class="lbl">Years Experience</div></div>
+    <div class="stat"><div class="n">500<span class="u">+</span></div><div class="lbl">Returns Filed</div></div>
+    <div class="stat"><div class="n">100<span class="u">+</span></div><div class="lbl">Business Clients</div></div>
+    <div class="stat"><div class="n">24<span class="u">h</span></div><div class="lbl">Response Time</div></div>
+  </div>
 </div>
 
-<div class="card">
-<h3>500+</h3>
-<p>ITR Filings</p>
-</div>
-
-<div class="card">
-<h3>100+</h3>
-<p>Business Clients</p>
-</div>
-
-<div class="card">
-<h3>24 Hrs</h3>
-<p>Support</p>
-</div>
-
+<!-- ── Services ── -->
+<section class="block" id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-no="02">What we do</span>
+      <h2>One firm for every compliance need</h2>
+      <p>From a single ITR to full corporate compliance, each engagement is handled by professionals who know the deadlines, the forms and the fine print.</p>
+    </div>
+    <div class="svc-grid reveal">
+      <div class="svc"><div class="num">01</div><h3>Income Tax</h3><p>Return filing, tax planning, notices and assessment support for individuals and businesses.</p><div class="tags"><span>ITR-1 to ITR-7</span><span>Planning</span><span>Notices</span></div></div>
+      <div class="svc"><div class="num">02</div><h3>GST</h3><p>Registration, monthly and annual returns, reconciliation, audit and advisory.</p><div class="tags"><span>GSTR-1/3B</span><span>Annual</span><span>Audit</span></div></div>
+      <div class="svc"><div class="num">03</div><h3>Payroll</h3><p>Salary processing with statutory PF, ESIC and TDS — compliant and on schedule.</p><div class="tags"><span>PF · ESIC</span><span>TDS</span><span>Payslips</span></div></div>
+      <div class="svc"><div class="num">04</div><h3>ROC Compliance</h3><p>Annual filings, incorporation and company secretarial support under the Companies Act.</p><div class="tags"><span>Annual filings</span><span>Incorporation</span></div></div>
+      <div class="svc"><div class="num">05</div><h3>Virtual CFO</h3><p>MIS reporting, budgeting and financial planning to steer growing businesses.</p><div class="tags"><span>MIS</span><span>Budgeting</span><span>Planning</span></div></div>
+      <div class="svc"><div class="num">06</div><h3>Startup Services</h3><p>Company registration, MSME, trademark and funding-readiness support.</p><div class="tags"><span>Registration</span><span>MSME</span><span>Trademark</span></div></div>
+    </div>
+  </div>
 </section>
 
-<section id="services">
-
-<h2>Our Services</h2>
-
-<div class="services-grid">
-
-<div class="service-card">
-<h3>Income Tax</h3>
-<p>ITR Filing, Tax Planning, Notices, Assessments</p>
-</div>
-
-<div class="service-card">
-<h3>GST</h3>
-<p>Registration, Returns, Audit & Advisory</p>
-</div>
-
-<div class="service-card">
-<h3>Payroll</h3>
-<p>Salary Processing, PF, ESIC, TDS</p>
-</div>
-
-<div class="service-card">
-<h3>ROC Compliance</h3>
-<p>Annual Filings, Incorporation & Secretarial Support</p>
-</div>
-
-<div class="service-card">
-<h3>Virtual CFO</h3>
-<p>MIS Reporting, Budgeting & Financial Planning</p>
-</div>
-
-<div class="service-card">
-<h3>Startup Services</h3>
-<p>Company Registration, MSME, Trademark & Funding Support</p>
-</div>
-
-</div>
-
+<!-- ── Software / ITR portal ── -->
+<section class="block" id="software" style="padding-top:0">
+  <div class="wrap">
+    <div class="software reveal">
+      <div>
+        <span class="eyebrow" data-no="03">Self-service · ITR FY 2025-26</span>
+        <h2>File your return in our guided portal</h2>
+        <p>Sign in, upload your Form 16, and our portal does the heavy lifting — then our professionals review every computation before filing.</p>
+        <ul>
+          <li>Form 16 read automatically — salary, deductions and TDS auto-filled</li>
+          <li>Old vs New regime compared side-by-side, instantly</li>
+          <li>Built-in SMART.AI assistant answers questions in Hindi or English</li>
+          <li>Documents stored securely; reviewed by SCP before filing</li>
+        </ul>
+        <a href="https://scp-itr.smartcomplianceprofessionals.workers.dev/" target="_blank" rel="noopener" class="btn btn-primary">Open the ITR filing portal →</a>
+      </div>
+      <div class="sw-visual">
+        <span class="badge">Live preview</span>
+        <div class="scr">
+          <div class="ln"><span>Salary u/s 17(1)</span><span>₹ 7,18,859</span></div>
+          <div class="ln"><span>Standard deduction</span><span>₹ 75,000</span></div>
+          <div class="ln"><span>Total taxable income</span><span>₹ 6,43,859</span></div>
+          <div class="ln"><span>Recommended regime</span><span class="g">New · ₹ 0</span></div>
+        </div>
+        <p style="font-size:12px;color:#9fb0dc;margin-top:14px">Figures shown are an example. Your numbers come from your own Form 16.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section id="itr">
-
-<h2>ITR Filing FY 2025-26</h2>
-
-<p>
-Upload your details and receive professional assistance for filing your Income Tax Return.
-</p>
-
-<a href="https://docs.google.com/forms/d/e/1FAIpQLSfLGc_DjxNss-XPrFPyTwvD-JqWlWHwCRqh7jtbWu-wNI2lxw/viewform"
-target="_blank"
-class="btn">
-
-Register Now
-
-</a>
-
+<!-- ── Corporate program ── -->
+<section class="block" id="corporate">
+  <div class="wrap corp">
+    <div class="reveal">
+      <span class="eyebrow" data-no="04">For HR &amp; employers</span>
+      <h2 style="font-size:clamp(26px,3.4vw,38px);color:var(--ink);margin-bottom:14px">Corporate Employee Tax Wellness</h2>
+      <p style="color:var(--ink-soft);font-size:16px">We partner with HR teams to give employees a calm, guided tax season — filing support, awareness sessions and a dedicated helpdesk, all run by SCP.</p>
+      <a href="#contact" class="btn btn-ghost" style="margin-top:24px">Talk to us about your team →</a>
+    </div>
+    <ul class="reveal">
+      <li><b>Employee ITR filing assistance</b> Guided filing through our portal, reviewed by professionals.</li>
+      <li><b>Old vs New regime analysis</b> Help every employee pick the regime that saves them the most.</li>
+      <li><b>Dedicated WhatsApp support</b> A direct line for your team's tax questions.</li>
+      <li><b>Tax planning sessions</b> Practical awareness talks tailored to your workforce.</li>
+      <li><b>Notice assistance</b> Support if an employee receives an income-tax notice.</li>
+    </ul>
+  </div>
 </section>
 
-<section id="corporate">
-
-<h2>Corporate Employee Tax Wellness Program</h2>
-
-<p>
-We partner with HR teams to provide tax filing support, awareness sessions and employee helpdesk services.
-</p>
-
-<ul>
-
-<li>Employee ITR Filing Assistance</li>
-
-<li>Old vs New Regime Analysis</li>
-
-<li>Dedicated WhatsApp Support</li>
-
-<li>Tax Planning Sessions</li>
-
-<li>Notice Assistance</li>
-
-</ul>
-
+<!-- ── Why us ── -->
+<section class="block why" id="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-no="05">Why SMART Compliance</span>
+      <h2>The reasons clients stay with us</h2>
+      <p>Expertise you can rely on, and a response time you can plan around.</p>
+    </div>
+    <div class="why-grid reveal">
+      <div class="why-card"><div class="ix">🏆</div><div><h3>15+ years of experience</h3><p>Deep expertise across taxation, payroll and corporate compliance.</p></div></div>
+      <div class="why-card"><div class="ix">🏢</div><div><h3>Corporate &amp; individual</h3><p>Serving startups, SMEs, corporates and salaried employees alike.</p></div></div>
+      <div class="why-card"><div class="ix">⚡</div><div><h3>Quick response</h3><p>Dedicated WhatsApp and email support for faster resolution.</p></div></div>
+      <div class="why-card"><div class="ix">🔗</div><div><h3>End-to-end compliance</h3><p>GST, Income Tax, ROC, Payroll and advisory — under one roof.</p></div></div>
+    </div>
+  </div>
 </section>
 
-<section id="contact">
+<!-- ── Contact / enquiry ── -->
+<section class="block contact" id="contact">
+  <div class="wrap contact-grid">
+    <div class="cinfo reveal">
+      <span class="eyebrow" data-no="06">Get in touch</span>
+      <h2>Let's sort your compliance</h2>
+      <p class="intro">Send an enquiry and we'll respond within 24 hours — or message us on WhatsApp for an instant reply.</p>
+      <div class="item"><div class="ic">📞</div><div class="t"><b>Phone</b><span><a href="tel:+918285159604">+91 82851 59604</a></span></div></div>
+      <div class="item"><div class="ic">✉</div><div class="t"><b>Email</b><span><a href="mailto:smartcomplianceprofessionals@gmail.com">smartcomplianceprofessionals@gmail.com</a></span></div></div>
+      <div class="item"><div class="ic">📍</div><div class="t"><b>Location</b><span>Delhi NCR · PAN-India services</span></div></div>
+      <div class="item" style="border-bottom:0"><div class="ic">🕑</div><div class="t"><b>Hours</b><span>Monday – Saturday, 10:00 – 19:00</span></div></div>
+    </div>
 
-<div class="contact-box">
-
-<h2>Contact SMART Compliance Professionals</h2>
-
-<p>📞 9650073610</p>
-
-<p>📧 smartcomplianceprofessionals@gmail.com</p>
-
-<p>Delhi NCR | PAN India Services</p>
-
-<a href="https://wa.me/919650073610"
-class="btn">
-
-Book Free Consultation
-
-</a>
-
-</div>
-
+    <div class="form reveal">
+      <h3>Send an enquiry</h3>
+      <p class="sub">Fill this in and choose how you'd like to send it.</p>
+      <form id="enquiryForm">
+        <div class="frow">
+          <div class="field"><label>Full name <span class="req">*</span></label><input type="text" id="f_name" required placeholder="Your name"></div>
+          <div class="field"><label>Mobile <span class="req">*</span></label><input type="tel" id="f_phone" required maxlength="10" placeholder="10-digit mobile" inputmode="numeric"></div>
+        </div>
+        <div class="field"><label>Email</label><input type="email" id="f_email" placeholder="you@example.com"></div>
+        <div class="field"><label>Service needed</label>
+          <select id="f_service">
+            <option>Income Tax / ITR filing</option>
+            <option>GST registration / returns</option>
+            <option>Payroll (PF, ESIC, TDS)</option>
+            <option>ROC / company compliance</option>
+            <option>Virtual CFO / advisory</option>
+            <option>Startup / registration</option>
+            <option>Corporate employee program</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field"><label>Message</label><textarea id="f_msg" placeholder="Briefly describe what you need…"></textarea></div>
+        <div class="actions">
+          <button type="submit" class="btn btn-primary">Send by email</button>
+          <button type="button" class="btn btn-wa" id="waSend">Send on WhatsApp</button>
+        </div>
+        <div class="formmsg" id="formMsg"></div>
+        <p class="note">Your details are used only to respond to your enquiry.</p>
+      </form>
+    </div>
+  </div>
 </section>
 
-</section>
-
-<footer>
-
-SMART Compliance Professionals © 2026
-
+<!-- ── Footer ── -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#home" class="brand">
+          <span class="mark">S</span>
+          <span class="bt"><b>SMART <span class="red">Compliance</span> Professionals</b><span>Chartered Accountancy &amp; Advisory</span></span>
+        </a>
+        <p class="fdesc">Taxation, GST, payroll and corporate compliance for businesses, startups and salaried employees across India.</p>
+      </div>
+      <div class="fcol">
+        <h4>Services</h4>
+        <a href="#services">Income Tax &amp; ITR</a>
+        <a href="#services">GST</a>
+        <a href="#services">Payroll</a>
+        <a href="#services">ROC Compliance</a>
+        <a href="#services">Virtual CFO</a>
+      </div>
+      <div class="fcol">
+        <h4>Company</h4>
+        <a href="#software">ITR Filing Portal</a>
+        <a href="#corporate">Corporate Program</a>
+        <a href="#why">Why Us</a>
+        <a href="#contact">Contact</a>
+        <a href="https://wa.me/918285159604" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+    <div class="fbot">
+      <span>© 2026 SMART Compliance Professionals. All rights reserved.</span>
+      <span class="disc">Information on this site is general in nature and not a substitute for professional advice.</span>
+    </div>
+  </div>
 </footer>
 
-</body>
+<!-- ── WhatsApp float ── -->
+<a href="https://wa.me/918285159604?text=Hi%20SMART%20Compliance%20Professionals%2C%20I%27d%20like%20to%20enquire%20about%20your%20services." class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <span class="pulse"></span>
+  <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 3C9 3 3.5 8.5 3.5 15.5c0 2.4.7 4.6 1.8 6.5L3 29l7.2-2.3c1.8 1 3.9 1.5 6 1.5 7 0 12.5-5.5 12.5-12.5S23 3 16 3zm0 22.7c-1.9 0-3.7-.5-5.3-1.5l-.4-.2-4.3 1.4 1.4-4.2-.3-.4c-1-1.6-1.6-3.5-1.6-5.5C5.6 9.7 10.3 5 16 5s10.4 4.7 10.4 10.5S21.7 25.7 16 25.7zm5.7-7.8c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.2-.2.2-.3.3-.5.1-.2.1-.4 0-.5-.1-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5 4.5.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.2-.6-.4z"/></svg>
+  WhatsApp
+</a>
 
+<script>
+/* Mobile menu */
+var burger=document.getElementById('burger'),navl=document.getElementById('navlinks');
+burger.addEventListener('click',function(){
+  var open=navl.classList.toggle('open');
+  burger.setAttribute('aria-expanded',open);
+});
+navl.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){navl.classList.remove('open');burger.setAttribute('aria-expanded',false);});});
+
+/* Scroll reveal — only enable the hidden state if JS is running and motion is allowed */
+if(!window.matchMedia||!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  document.documentElement.classList.add('js-reveal');
+  var io=new IntersectionObserver(function(ents){
+    ents.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+}
+
+/* Enquiry form */
+var FORMSPREE_ENDPOINT="https://formspree.io/f/mdavpqrn"; // ← replace yourFormId with your Formspree form ID
+var WHATSAPP_NUMBER="918285159604";
+var form=document.getElementById('enquiryForm'),msg=document.getElementById('formMsg');
+
+function readForm(){
+  return {
+    name:document.getElementById('f_name').value.trim(),
+    phone:document.getElementById('f_phone').value.trim(),
+    email:document.getElementById('f_email').value.trim(),
+    service:document.getElementById('f_service').value,
+    message:document.getElementById('f_msg').value.trim()
+  };
+}
+function validate(d){
+  if(!d.name){return 'Please enter your name.';}
+  if(!/^[6-9]\d{9}$/.test(d.phone)){return 'Please enter a valid 10-digit mobile number.';}
+  return '';
+}
+function showMsg(text,kind){msg.textContent=text;msg.className='formmsg '+kind;}
+
+/* Email via Formspree */
+form.addEventListener('submit',function(e){
+  e.preventDefault();
+  var d=readForm(),err=validate(d);
+  if(err){showMsg(err,'err');return;}
+  if(FORMSPREE_ENDPOINT.indexOf('yourFormId')>-1){
+    showMsg('Email sending isn\u2019t configured yet — please use the WhatsApp button, or set up your Formspree ID.','err');
+    return;
+  }
+  showMsg('Sending\u2026','ok');
+  fetch(FORMSPREE_ENDPOINT,{
+    method:'POST',
+    headers:{'Accept':'application/json','Content-Type':'application/json'},
+    body:JSON.stringify({name:d.name,phone:d.phone,email:d.email,service:d.service,message:d.message})
+  }).then(function(r){
+    if(r.ok){form.reset();showMsg('Thanks! Your enquiry has been sent. We\u2019ll respond within 24 hours.','ok');}
+    else{showMsg('Something went wrong. Please try the WhatsApp button instead.','err');}
+  }).catch(function(){showMsg('Network error. Please try the WhatsApp button instead.','err');});
+});
+
+/* WhatsApp pre-filled */
+document.getElementById('waSend').addEventListener('click',function(){
+  var d=readForm(),err=validate(d);
+  if(err){showMsg(err,'err');return;}
+  var txt='New enquiry — SMART Compliance Professionals%0A%0A'
+    +'Name: '+encodeURIComponent(d.name)+'%0A'
+    +'Mobile: '+encodeURIComponent(d.phone)+'%0A'
+    +(d.email?'Email: '+encodeURIComponent(d.email)+'%0A':'')
+    +'Service: '+encodeURIComponent(d.service)+'%0A'
+    +(d.message?'Message: '+encodeURIComponent(d.message):'');
+  window.open('https://wa.me/'+WHATSAPP_NUMBER+'?text='+txt,'_blank');
+  showMsg('Opening WhatsApp with your enquiry pre-filled\u2026','ok');
+});
+</script>
+</body>
 </html>
