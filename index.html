@@ -192,8 +192,8 @@ footer .brand .mark{width:70px;height:70px;background-color:#fff;box-shadow:var(
 .marquee .track{display:flex;width:max-content;gap:64px;align-items:center;animation:scroll-x 40s linear infinite}
 .marquee:hover .track{animation-play-state:paused}
 .marquee .logo{flex:none;height:56px;display:grid;place-items:center}
-.marquee .logo img{max-height:56px;width:auto;object-fit:contain;filter:grayscale(100%);opacity:.72;transition:filter .25s,opacity .25s}
-.marquee:hover .logo img{filter:none;opacity:1}
+.marquee .logo img{max-height:56px;width:auto;object-fit:contain;transition:transform .25s}
+.marquee .logo img:hover{transform:scale(1.06)}
 @keyframes scroll-x{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .cli-note{text-align:center;font-size:12.5px;color:var(--muted);margin-top:24px}
 
@@ -582,21 +582,22 @@ footer p.fdesc{font-size:14px;color:#9fb0dc;margin-top:14px;max-width:330px}
       <p>From fast-growing startups to established corporates, finance and HR teams rely on us to keep their compliance accurate and on time.</p>
     </div>
     <!--
-      ════════ HOW TO EDIT CLIENTS ════════
-      Each client below is ONE line. The logo files live in the /clients folder.
-      • To change a logo: replace the file in /clients (keep the same name), OR point src to a new file.
-      • To rename: edit the alt and title text.
-      • To ADD a new client: copy one <div class="logo">…</div> line, drop the new logo PNG
-        (about 110px tall, trimmed, transparent or white background) into /clients, and update src/alt/title.
-      • To remove: delete its line.
-      You only edit this single list — the scrolling loop is duplicated automatically.
+      ════════ HOW CLIENTS WORK ════════
+      On the live site, this strip is built automatically from whatever logo files are
+      inside the /clients folder in your GitHub repo. So:
+        • ADD a client  → upload its logo (≈110px tall, trimmed) into /clients. Done.
+        • REMOVE a client → delete its logo file from /clients.
+        • RENAME / nicer caption → add an entry to NAME_MAP in the script near the bottom,
+          keyed by the file name without extension, e.g.  "acme":"Acme Ltd — Manufacturing".
+          If a file has no NAME_MAP entry, its name is made from the file name automatically.
+      The logos listed below are only a FALLBACK, shown if the folder listing can't be read.
+      Keep them roughly in sync, or leave as-is.
     -->
     <div class="marquee reveal">
       <div class="track" id="cliTrack">
         <div class="logo"><img src="clients/business-standard.png" alt="Business Standard" title="Business Standard — Media House" loading="lazy"></div>
         <div class="logo"><img src="clients/addverb.png" alt="Addverb Technologies" title="Addverb Technologies — Robotics (Reliance Group)" loading="lazy"></div>
         <div class="logo"><img src="clients/universal.png" alt="Universal Drilling Fluid" title="Universal Drilling Fluid — Chemicals" loading="lazy"></div>
-        <div class="logo"><img src="clients/vbkj.png" alt="VBKJ Insurance Surveyors" title="VBKJ Insurance Surveyors &amp; Loss Assessors" loading="lazy"></div>
         <div class="logo"><img src="clients/vahiimans.png" alt="Vahiimans Solution" title="Vahiimans Solution — Security &amp; Safety Systems" loading="lazy"></div>
         <div class="logo"><img src="clients/wesafe.png" alt="Ramaya / WeSafe" title="Ramaya Artificial Limbs — Healthcare &amp; Medical Devices" loading="lazy"></div>
         <div class="logo"><img src="clients/triyash.png" alt="Triyash Enterprises" title="Triyash Enterprises — Leather Manufacturing" loading="lazy"></div>
@@ -781,9 +782,58 @@ if(statsEl){
   co.observe(statsEl);
 }
 
-/* Client logo marquee — duplicate the list once for a seamless loop */
+/* Client logo marquee — auto-populated from the /clients folder on GitHub.
+   Add or remove a logo file in /clients and the strip updates itself.
+   If the listing can't be fetched, the logos hard-coded in the HTML are used instead. */
 var cliTrack=document.getElementById('cliTrack');
-if(cliTrack && !reduceMotion){ cliTrack.innerHTML += cliTrack.innerHTML; }
+var GH_REPO="smartcomplianceprofessionals-ui/smart-website", GH_DIR="clients";
+var NAME_MAP={
+  "business-standard":"Business Standard — Media House",
+  "addverb":"Addverb Technologies — Robotics (Reliance Group)",
+  "universal":"Universal Drilling Fluid — Chemicals",
+  "vbkj":"VBKJ Insurance Surveyors & Loss Assessors",
+  "vahiimans":"Vahiimans Solution — Security & Safety Systems",
+  "wesafe":"Ramaya Artificial Limbs — Healthcare & Medical Devices",
+  "triyash":"Triyash Enterprises — Leather Manufacturing",
+  "sks":"SKS Certification — Certification & Consultancy"
+};
+function prettyName(file){
+  var base=file.replace(/\.[a-z0-9]+$/i,'').toLowerCase();
+  if(NAME_MAP[base]) return NAME_MAP[base];
+  return base.replace(/[-_]+/g,' ').replace(/\b\w/g,function(c){return c.toUpperCase();});
+}
+function buildMarquee(files){
+  if(!files.length) return false;            // empty → keep embedded fallback
+  cliTrack.innerHTML='';
+  files.forEach(function(f){
+    var label=prettyName(f), alt=label.split(' — ')[0];
+    var d=document.createElement('div'); d.className='logo';
+    var img=document.createElement('img');
+    img.src=GH_DIR+'/'+encodeURIComponent(f); img.alt=alt; img.title=label; img.loading='lazy';
+    img.onerror=function(){ d.remove(); };   // a logo whose file isn't there is dropped
+    d.appendChild(img); cliTrack.appendChild(d);
+  });
+  return true;
+}
+function loopMarquee(){ if(cliTrack && !reduceMotion){ cliTrack.innerHTML += cliTrack.innerHTML; } }
+(function(){
+  if(!cliTrack) return;
+  var IMG=/\.(png|jpe?g|webp|svg|gif)$/i, done=false;
+  function finish(files){ if(done) return; done=true; if(files) buildMarquee(files); loopMarquee(); }
+  var cached=null; try{cached=sessionStorage.getItem('scp_clients');}catch(e){}
+  if(cached){ try{ finish(JSON.parse(cached)); return; }catch(e){} }
+  var t=setTimeout(function(){ finish(null); }, 2500);  // network slow → use embedded list
+  fetch('https://api.github.com/repos/'+GH_REPO+'/contents/'+GH_DIR,{headers:{'Accept':'application/vnd.github+json'}})
+    .then(function(r){ return r.ok?r.json():Promise.reject(); })
+    .then(function(items){
+      var files=items.filter(function(i){return i.type==='file'&&IMG.test(i.name);})
+                     .map(function(i){return i.name;}).sort();
+      clearTimeout(t);
+      try{sessionStorage.setItem('scp_clients',JSON.stringify(files));}catch(e){}
+      finish(files);
+    })
+    .catch(function(){ clearTimeout(t); finish(null); });
+})();
 
 /* SMART Assistant chatbot */
 var root=document.documentElement,
