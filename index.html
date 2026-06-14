@@ -1000,5 +1000,18 @@ if(subForm){
   });
 }
 </script>
+<script>
+  // Disable right-click menu
+  document.addEventListener('contextmenu', event => event.preventDefault());
+
+  // Disable specific shortcut keys (U, I, F12)
+  document.onkeydown = (e) => {
+    if (e.keyCode === 123) return false; // F12
+    if (e.ctrlKey && e.shiftKey && e.keyCode === 73) return false; // Ctrl+Shift+I (Inspect)
+    if (e.ctrlKey && e.shiftKey && e.keyCode === 67) return false; // Ctrl+Shift+C (Element Selector)
+    if (e.ctrlKey && e.keyCode === 85) return false; // Ctrl+U (View Source)
+  };
+</script>
+
 </body>
 </html>
