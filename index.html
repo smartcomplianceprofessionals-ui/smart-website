@@ -935,7 +935,7 @@ function validate(d){
 function showMsg(text,kind){msg.textContent=text;msg.className='formmsg '+kind;}
 
 /* ── Form delivery via Google Apps Script (sends a tabular email to your Gmail) ── */
-var SCRIPT_URL="https://script.google.com/macros/s/AKfycbxSiyOmyIx9r7PWuHgUAm6qFrGHqMPCwzYA02xWjI-eyS8P7HLp7k5m0ghbN0cqUKO9/exec";
+var SCRIPT_URL=""; // ← paste your Apps Script web-app URL here (it ends with /exec)
 function postToScript(payload){
   // Apps Script web apps don't send CORS headers, so we use a "simple" no-cors request
   // (text/plain avoids a preflight). The response is opaque; we treat completion as success.
