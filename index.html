@@ -250,6 +250,18 @@ section.block{padding:88px 0}
   border-radius:10px;padding:16px 20px;font-size:15px;color:var(--ink-soft);box-shadow:var(--shadow-sm)}
 .corp li b{color:var(--ink);display:block;font-weight:600;font-size:15px}
 
+/* ── Email Alerts / subscription ── */
+.alerts{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center;
+  background:linear-gradient(135deg,#fff,#f3f6fd);border:1px solid var(--rule);border-radius:20px;padding:46px;box-shadow:var(--shadow)}
+.al-info h2{font-size:clamp(26px,3.4vw,36px);color:var(--ink);margin:12px 0 14px}
+.al-info p{color:var(--ink-soft);font-size:16px;margin-bottom:22px}
+.al-info ul{list-style:none;display:grid;gap:11px}
+.al-info li{display:flex;gap:11px;align-items:flex-start;font-size:14.5px;color:var(--ink-soft)}
+.al-info li::before{content:"✓";color:var(--seal);font-weight:700;flex:none}
+.al-card{background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:30px;box-shadow:var(--shadow)}
+.al-card h3{font-size:20px;color:var(--ink);margin-bottom:6px}
+.al-card .sub{font-size:13.5px;color:var(--muted);margin-bottom:20px}
+
 /* ── Enquiry / Contact ── */
 .contact{background:#fff;border-top:1px solid var(--rule)}
 .contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:start}
@@ -368,7 +380,7 @@ footer p.fdesc{font-size:14px;color:#9fb0dc;margin-top:14px;max-width:330px}
 @media(max-width:960px){
   .hero .wrap{grid-template-columns:1fr;gap:38px}
   .ledger{max-width:460px}
-  .software,.corp,.contact-grid{grid-template-columns:1fr;gap:32px}
+  .software,.corp,.contact-grid,.alerts{grid-template-columns:1fr;gap:32px}
   .svc-grid{grid-template-columns:1fr 1fr}
   .foot-grid{grid-template-columns:1fr 1fr}
   .sn-grid{grid-template-columns:repeat(3,1fr)}
@@ -414,7 +426,7 @@ footer p.fdesc{font-size:14px;color:#9fb0dc;margin-top:14px;max-width:330px}
       <span class="tb-util">
         <a href="#contact">Connect with us</a>
         <a href="#software">Downloads</a>
-        <a href="mailto:smartcomplianceprofessionals@gmail.com?subject=Subscribe%20to%20Email%20Alerts">Email Alerts</a>
+        <a href="#alerts">Email Alerts</a>
       </span>
       <a class="tb-phone" href="tel:+918285159604">📞 +91 82851 59604</a>
       <a href="mailto:smartcomplianceprofessionals@gmail.com">✉ Email</a>
@@ -608,11 +620,42 @@ footer p.fdesc{font-size:14px;color:#9fb0dc;margin-top:14px;max-width:330px}
   </div>
 </section>
 
+<!-- ── Email Alerts / subscription ── -->
+<section class="block" id="alerts" style="padding-top:0">
+  <div class="wrap">
+    <div class="alerts reveal">
+      <div class="al-info">
+        <span class="eyebrow" data-no="07">Email alerts</span>
+        <h2>Tax &amp; compliance updates, right in your inbox</h2>
+        <p>Our team distils the updates that matter for businesses and finance teams — concise, practical and free. No spam; unsubscribe anytime.</p>
+        <ul>
+          <li>GST notifications, circulars and due-date reminders</li>
+          <li>Income-tax updates, deadlines and key changes</li>
+          <li>ROC / MCA and corporate compliance alerts</li>
+          <li>Practical tips and a fortnightly summary</li>
+        </ul>
+      </div>
+      <div class="al-card">
+        <h3>Subscribe to our updates</h3>
+        <p class="sub">Get the latest delivered to your inbox.</p>
+        <form id="subForm">
+          <div class="field"><label>Name</label><input type="text" id="s_name" placeholder="Your name"></div>
+          <div class="field"><label>Email <span class="req">*</span></label><input type="email" id="s_email" required placeholder="you@example.com"></div>
+          <div class="hp" aria-hidden="true"><label>Company website</label><input type="text" id="s_company" tabindex="-1" autocomplete="off"></div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Subscribe</button>
+          <div class="formmsg" id="subMsg"></div>
+          <p class="note">We use your email only to send updates. See our <a href="privacy.html">Privacy Policy</a>.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ── Contact / enquiry ── -->
 <section class="block contact" id="contact">
   <div class="wrap contact-grid">
     <div class="cinfo reveal">
-      <span class="eyebrow" data-no="07">Get in touch</span>
+      <span class="eyebrow" data-no="08">Get in touch</span>
       <h2>Let's sort your compliance</h2>
       <p class="intro">Send an enquiry and we'll respond within 24 hours — or message us on WhatsApp for an instant reply.</p>
       <div class="item"><div class="ic">📞</div><div class="t"><b>Phone</b><span><a href="tel:+918285159604">+91 82851 59604</a> · <a href="tel:+919650073610">+91 96500 73610</a></span></div></div>
@@ -869,7 +912,6 @@ chatQuick.querySelectorAll('button').forEach(function(b){
 });
 
 /* Enquiry form */
-var FORMSPREE_ENDPOINT="https://formspree.io/f/mdavpqrn"; // ← replace yourFormId with your Formspree form ID
 var WHATSAPP_NUMBER="918285159604";
 var form=document.getElementById('enquiryForm'),msg=document.getElementById('formMsg');
 
@@ -892,26 +934,31 @@ function validate(d){
 }
 function showMsg(text,kind){msg.textContent=text;msg.className='formmsg '+kind;}
 
-/* Email via Formspree */
+/* ── Form delivery via Google Apps Script (sends a tabular email to your Gmail) ── */
+var SCRIPT_URL="https://script.google.com/macros/s/AKfycbxSiyOmyIx9r7PWuHgUAm6qFrGHqMPCwzYA02xWjI-eyS8P7HLp7k5m0ghbN0cqUKO9/exec";
+function postToScript(payload){
+  // Apps Script web apps don't send CORS headers, so we use a "simple" no-cors request
+  // (text/plain avoids a preflight). The response is opaque; we treat completion as success.
+  return fetch(SCRIPT_URL,{
+    method:'POST',
+    mode:'no-cors',
+    headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body:JSON.stringify(payload)
+  });
+}
+
+/* Enquiry form */
 form.addEventListener('submit',function(e){
   e.preventDefault();
   var d=readForm();
   if(d.company){form.reset();showMsg('Thanks! Your enquiry has been sent.','ok');return;} /* honeypot tripped → drop silently */
   var err=validate(d);
   if(err){showMsg(err,'err');return;}
-  if(FORMSPREE_ENDPOINT.indexOf('yourFormId')>-1){
-    showMsg('Email sending isn\u2019t configured yet — please use the WhatsApp button, or set up your Formspree ID.','err');
-    return;
-  }
+  if(!SCRIPT_URL){showMsg('Email sending isn\u2019t set up yet \u2014 please use the WhatsApp button for now.','err');return;}
   showMsg('Sending\u2026','ok');
-  fetch(FORMSPREE_ENDPOINT,{
-    method:'POST',
-    headers:{'Accept':'application/json','Content-Type':'application/json'},
-    body:JSON.stringify({name:d.name,phone:d.phone,email:d.email,service:d.service,message:d.message})
-  }).then(function(r){
-    if(r.ok){form.reset();showMsg('Thanks! Your enquiry has been sent. We\u2019ll respond within 24 hours.','ok');}
-    else{showMsg('Something went wrong. Please try the WhatsApp button instead.','err');}
-  }).catch(function(){showMsg('Network error. Please try the WhatsApp button instead.','err');});
+  postToScript({type:'Enquiry',name:d.name,phone:d.phone,email:d.email,service:d.service,message:d.message,company:d.company,page:location.href})
+    .then(function(){form.reset();showMsg('Thanks! Your enquiry has been sent. We\u2019ll respond within 24 hours.','ok');})
+    .catch(function(){showMsg('Network error. Please try the WhatsApp button instead.','err');});
 });
 
 /* WhatsApp pre-filled */
@@ -927,6 +974,25 @@ document.getElementById('waSend').addEventListener('click',function(){
   window.open('https://wa.me/'+WHATSAPP_NUMBER+'?text='+txt,'_blank');
   showMsg('Opening WhatsApp with your enquiry pre-filled\u2026','ok');
 });
+
+/* Email-alerts subscription form */
+var subForm=document.getElementById('subForm'),subMsg=document.getElementById('subMsg');
+if(subForm){
+  var subShow=function(t,k){subMsg.textContent=t;subMsg.className='formmsg '+k;};
+  subForm.addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=document.getElementById('s_name').value.trim();
+    var email=document.getElementById('s_email').value.trim();
+    var hp=document.getElementById('s_company').value.trim();
+    if(hp){subForm.reset();subShow('Thanks for subscribing!','ok');return;}
+    if(!/^\S+@\S+\.\S+$/.test(email)){subShow('Please enter a valid email address.','err');return;}
+    if(!SCRIPT_URL){subShow('Subscriptions aren\u2019t set up yet \u2014 please check back soon.','err');return;}
+    subShow('Subscribing\u2026','ok');
+    postToScript({type:'Subscription',name:name,email:email,company:hp,page:location.href})
+      .then(function(){subForm.reset();subShow('Thanks! You\u2019re subscribed to our updates.','ok');})
+      .catch(function(){subShow('Network error. Please try again.','err');});
+  });
+}
 </script>
 </body>
 </html>
