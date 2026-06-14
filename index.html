@@ -54,18 +54,17 @@ img{max-width:100%;display:block}
 .topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;height:38px;flex-wrap:wrap}
 .topbar a{text-decoration:none;color:#cdd9f5;transition:color .15s}
 .topbar a:hover{color:#fff}
-.topbar .tb-right{display:flex;gap:20px;align-items:center}
+.topbar .tb-right{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.topbar .tb-util{display:flex;gap:18px;align-items:center}
+.topbar .tb-phone{border-left:1px solid rgba(255,255,255,.2);padding-left:18px}
 
 /* ── Nav ── */
 header.site{position:sticky;top:0;z-index:900;background:rgba(251,252,254,.88);
   backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--rule)}
 nav{display:flex;align-items:center;justify-content:space-between;height:74px}
 .brand{display:flex;align-items:center;gap:13px;text-decoration:none}
-.brand .mark{width:46px;height:46px;flex:none;border-radius:11px;
-  background:linear-gradient(140deg,var(--ink),var(--ink-2));
-  display:grid;place-items:center;color:#fff;font-family:'Fraunces',serif;font-weight:700;font-size:20px;
-  box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
-.brand .mark::after{content:"";position:absolute;left:0;right:0;top:50%;height:3px;background:var(--seal);transform:translateY(-50%)}
+.brand .mark{width:62px;height:62px;flex:none;border-radius:50%;object-fit:contain;background:transparent;display:block}
+footer .brand .mark{width:68px;height:68px;background:#fff;padding:5px;box-shadow:var(--shadow-sm)}
 .brand .bt{line-height:1.15}
 .brand .bt b{font-family:'Fraunces',serif;font-weight:700;font-size:17px;color:var(--ink);letter-spacing:-.01em;display:block}
 .brand .bt span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
@@ -122,14 +121,27 @@ nav{display:flex;align-items:center;justify-content:space-between;height:74px}
 .ledger .row .v{font-weight:600;color:var(--ink);font-size:14.5px}
 .ledger .foot{padding:14px 22px;background:#f7f9fe;font-size:12.5px;color:var(--muted);text-align:center}
 
-/* ── Stats strip ── */
-.stats{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);background:#fff}
-.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
-.stat{padding:34px 20px;text-align:center;border-right:1px solid var(--rule)}
-.stat:last-child{border-right:0}
-.stat .n{font-family:'Fraunces',serif;font-size:40px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1}
+/* ── Speaking Numbers strip ── */
+.stats{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);background:#fff;padding:46px 0 50px}
+.sn-head{text-align:center;margin-bottom:30px}
+.sn-head .kick{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.sn-head h2{font-size:clamp(26px,3.4vw,38px);color:var(--seal);letter-spacing:.01em}
+.sn-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--rule);
+  border:1px solid var(--rule);border-radius:16px;overflow:hidden}
+.stat{background:#fff;padding:30px 16px;text-align:center}
+.stat .n{font-family:'Fraunces',serif;font-size:clamp(30px,3.4vw,42px);font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1}
 .stat .n .u{color:var(--seal)}
-.stat .lbl{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.stat .lbl{font-size:12.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-top:9px}
+
+/* ── Our Clients ── */
+.clients{background:#fff;border-top:1px solid var(--rule)}
+.cli-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.cli{background:var(--paper);border:1px solid var(--rule);border-radius:12px;min-height:96px;
+  display:grid;place-items:center;text-align:center;padding:14px;transition:transform .15s,box-shadow .15s,border-color .15s}
+.cli:hover{transform:translateY(-3px);box-shadow:var(--shadow-sm);border-color:#cfd8ee}
+.cli .mono{font-family:'Fraunces',serif;font-size:22px;color:var(--ink);line-height:1}
+.cli small{display:block;font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.cli img{max-height:54px;width:auto;object-fit:contain}
 
 /* ── Section base ── */
 section.block{padding:88px 0}
@@ -229,7 +241,7 @@ footer p.fdesc{font-size:14px;color:#9fb0dc;margin-top:14px;max-width:330px}
 .fbot .disc{max-width:680px}
 
 /* ── WhatsApp float ── */
-.wa-float{position:fixed;bottom:22px;right:22px;z-index:950;background:var(--wa);color:#fff;
+.wa-float{position:fixed;bottom:98px;right:24px;z-index:950;background:var(--wa);color:#fff;
   display:flex;align-items:center;gap:10px;padding:13px 20px 13px 16px;border-radius:50px;
   text-decoration:none;font-weight:600;font-size:15px;box-shadow:0 10px 26px rgba(37,211,102,.4);
   transition:transform .18s}
@@ -238,6 +250,56 @@ footer p.fdesc{font-size:14px;color:#9fb0dc;margin-top:14px;max-width:330px}
 .wa-float .pulse{position:absolute;inset:0;border-radius:50px;box-shadow:0 0 0 0 rgba(37,211,102,.5);
   animation:pulse 2.2s infinite}
 @keyframes pulse{70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+.chat-open .wa-float{display:none}
+
+/* ── Request a call side tab ── */
+.call-tab{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:940;
+  background:#fff;color:var(--seal);border:1px solid var(--rule);border-right:0;
+  border-radius:10px 0 0 10px;box-shadow:var(--shadow);writing-mode:vertical-rl;
+  padding:18px 9px;font-weight:700;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;
+  text-decoration:none;transition:background .15s,color .15s,padding .15s}
+.call-tab:hover{background:var(--seal);color:#fff;padding-right:13px}
+
+/* ── SMART Assistant chatbot ── */
+.chat-launch{position:fixed;bottom:24px;right:24px;z-index:982;width:60px;height:60px;border-radius:50%;
+  background:var(--ink);color:#fff;border:0;cursor:pointer;display:grid;place-items:center;
+  box-shadow:0 12px 30px rgba(13,43,138,.42);transition:transform .18s,background .18s}
+.chat-launch:hover{transform:scale(1.06);background:var(--ink-2)}
+.chat-launch svg{width:28px;height:28px}
+.chat-launch .x{display:none}
+.chat-open .chat-launch .chat-ic{display:none}
+.chat-open .chat-launch .x{display:block}
+.chat-greet{position:fixed;bottom:34px;right:96px;z-index:979;background:#fff;border:1px solid var(--rule);
+  box-shadow:var(--shadow);border-radius:14px 14px 4px 14px;padding:13px 30px 13px 14px;max-width:230px;
+  font-size:13.5px;color:var(--ink-soft);cursor:pointer;opacity:0;transform:translateY(8px);
+  pointer-events:none;transition:opacity .3s,transform .3s}
+.chat-greet.show{opacity:1;transform:none;pointer-events:auto}
+.chat-greet b{color:var(--ink);display:block;font-size:14px;margin-bottom:2px}
+.chat-greet .gx{position:absolute;top:6px;right:9px;color:var(--muted);font-size:16px;line-height:1}
+.chat-open .chat-greet{display:none}
+.chat-panel{position:fixed;bottom:96px;right:24px;z-index:980;width:344px;max-width:calc(100vw - 32px);
+  background:#fff;border:1px solid var(--rule);border-radius:16px;box-shadow:0 20px 50px rgba(13,43,138,.28);
+  overflow:hidden;display:none;flex-direction:column;max-height:min(560px,78vh)}
+.chat-open .chat-panel{display:flex}
+.chat-panel .ch{background:var(--ink);color:#fff;padding:15px 18px;display:flex;align-items:center;gap:12px;flex:none}
+.chat-panel .ch .av{width:42px;height:42px;border-radius:50%;background:#fff;padding:3px;object-fit:contain;flex:none}
+.chat-panel .ch b{font-family:'Fraunces',serif;font-size:15.5px;display:block;line-height:1.2}
+.chat-panel .ch .st{font-size:11.5px;color:#aebde8;display:flex;align-items:center;gap:6px}
+.chat-panel .ch .st::before{content:"";width:7px;height:7px;border-radius:50%;background:#41d97e;display:inline-block}
+.chat-body{padding:16px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;background:#f7f9fe;flex:1}
+.msg{max-width:86%;padding:10px 13px;border-radius:13px;font-size:13.5px;line-height:1.5}
+.msg a{color:inherit;text-decoration:underline}
+.msg.bot{background:#fff;border:1px solid var(--rule);color:#16203a;align-self:flex-start;border-bottom-left-radius:4px}
+.msg.user{background:var(--ink);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+.quick{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 14px;background:#f7f9fe;flex:none}
+.quick button{background:#fff;border:1px solid var(--rule);color:var(--ink);font:inherit;font-size:12.5px;font-weight:600;
+  padding:8px 12px;border-radius:20px;cursor:pointer;transition:background .15s,border-color .15s}
+.quick button:hover{background:#eef2fb;border-color:var(--ink)}
+.chat-foot{padding:12px 16px;border-top:1px solid var(--rule);display:flex;gap:8px;flex:none}
+.chat-foot a{flex:1;text-align:center;text-decoration:none;font-size:13px;font-weight:600;padding:10px;border-radius:9px;transition:transform .15s}
+.chat-foot a:hover{transform:translateY(-1px)}
+.chat-foot .wa{background:var(--wa);color:#fff}
+.chat-foot .call{background:#eef2fb;color:var(--ink)}
 
 /* ── Reveal on scroll (progressive enhancement only) ── */
 .js-reveal .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
@@ -250,6 +312,8 @@ footer p.fdesc{font-size:14px;color:#9fb0dc;margin-top:14px;max-width:330px}
   .software,.corp,.contact-grid{grid-template-columns:1fr;gap:32px}
   .svc-grid{grid-template-columns:1fr 1fr}
   .foot-grid{grid-template-columns:1fr 1fr}
+  .sn-grid{grid-template-columns:repeat(3,1fr)}
+  .cli-grid{grid-template-columns:repeat(3,1fr)}
 }
 @media(max-width:680px){
   .navlinks{position:fixed;inset:74px 0 auto 0;background:var(--paper);flex-direction:column;
@@ -260,9 +324,8 @@ footer p.fdesc{font-size:14px;color:#9fb0dc;margin-top:14px;max-width:330px}
   .navlinks a::after{display:none}
   .nav-cta{margin:8px 24px}
   .burger{display:flex}
-  .stats .wrap{grid-template-columns:1fr 1fr}
-  .stat:nth-child(2){border-right:0}
-  .stat{border-bottom:1px solid var(--rule)}
+  .sn-grid{grid-template-columns:repeat(2,1fr)}
+  .cli-grid{grid-template-columns:repeat(2,1fr)}
   .svc-grid{grid-template-columns:1fr}
   .why-grid{grid-template-columns:1fr}
   .foot-grid{grid-template-columns:1fr}
@@ -270,6 +333,9 @@ footer p.fdesc{font-size:14px;color:#9fb0dc;margin-top:14px;max-width:330px}
   .software{padding:32px 24px}
   section.block{padding:64px 0}
   .topbar .tb-left{display:none}
+  .topbar .tb-util{display:none}
+  .topbar .tb-phone{border-left:0;padding-left:0}
+  .call-tab{display:none}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
@@ -284,7 +350,12 @@ footer p.fdesc{font-size:14px;color:#9fb0dc;margin-top:14px;max-width:330px}
   <div class="wrap">
     <div class="tb-left">Delhi NCR · PAN-India Services · Mon–Sat 10:00–19:00</div>
     <div class="tb-right">
-      <a href="tel:+918285159604">📞 +91 82851 59604</a>
+      <span class="tb-util">
+        <a href="#contact">Connect with us</a>
+        <a href="#software">Downloads</a>
+        <a href="mailto:smartcomplianceprofessionals@gmail.com?subject=Subscribe%20to%20Email%20Alerts">Email Alerts</a>
+      </span>
+      <a class="tb-phone" href="tel:+918285159604">📞 +91 82851 59604</a>
       <a href="mailto:smartcomplianceprofessionals@gmail.com">✉ Email</a>
     </div>
   </div>
@@ -295,16 +366,13 @@ footer p.fdesc{font-size:14px;color:#9fb0dc;margin-top:14px;max-width:330px}
   <div class="wrap">
     <nav>
       <a href="#home" class="brand" aria-label="SMART Compliance Professionals home">
-        <span class="mark">S</span>
-        <span class="bt">
-          <b>SMART <span class="red">Compliance</span> Professionals</b>
-          <span>Chartered Accountancy &amp; Advisory</span>
-        </span>
+        <img class="mark" src="https://raw.githubusercontent.com/smartcomplianceprofessionals-ui/smart-website/main/SMART_Logo-final.png" alt="SMART Compliance Professionals" width="62" height="62">
       </a>
       <div class="navlinks" id="navlinks">
         <a href="#services">Services</a>
         <a href="#software">ITR Filing</a>
         <a href="#corporate">Corporate</a>
+        <a href="#clients">Clients</a>
         <a href="#why">Why Us</a>
         <a href="#contact">Contact</a>
         <a href="#contact" class="nav-cta">Free Consultation</a>
@@ -327,7 +395,7 @@ footer p.fdesc{font-size:14px;color:#9fb0dc;margin-top:14px;max-width:330px}
         <a href="#contact" class="btn btn-primary">Book a free consultation →</a>
         <a href="https://scp-itr.smartcomplianceprofessionals.workers.dev/" target="_blank" rel="noopener" class="btn btn-ghost">Open ITR filing portal</a>
       </div>
-      <div class="trustline"><span class="dot"></span> 15+ years of practice · 500+ returns filed · trusted by 100+ businesses</div>
+      <div class="trustline"><span class="dot"></span> 15+ years of practice · 5000+ returns filed · trusted by 100+ businesses</div>
     </div>
 
     <!-- Signature: a ledger card -->
@@ -342,15 +410,22 @@ footer p.fdesc{font-size:14px;color:#9fb0dc;margin-top:14px;max-width:330px}
   </div>
 </section>
 
-<!-- ── Stats ── -->
-<div class="stats">
+<!-- ── Speaking Numbers ── -->
+<section class="stats" id="numbers">
   <div class="wrap">
-    <div class="stat"><div class="n">15<span class="u">+</span></div><div class="lbl">Years Experience</div></div>
-    <div class="stat"><div class="n">500<span class="u">+</span></div><div class="lbl">Returns Filed</div></div>
-    <div class="stat"><div class="n">100<span class="u">+</span></div><div class="lbl">Business Clients</div></div>
-    <div class="stat"><div class="n">24<span class="u">h</span></div><div class="lbl">Response Time</div></div>
+    <div class="sn-head reveal">
+      <span class="kick">By the numbers</span>
+      <h2>Speaking Numbers</h2>
+    </div>
+    <div class="sn-grid reveal">
+      <div class="stat"><div class="n"><span class="cnt" data-target="15">0</span><span class="u">+</span></div><div class="lbl">Years Experience</div></div>
+      <div class="stat"><div class="n"><span class="cnt" data-target="5000">0</span><span class="u">+</span></div><div class="lbl">Returns Filed</div></div>
+      <div class="stat"><div class="n"><span class="cnt" data-target="500">0</span><span class="u">+</span></div><div class="lbl">Assignments</div></div>
+      <div class="stat"><div class="n"><span class="cnt" data-target="100">0</span><span class="u">+</span></div><div class="lbl">Business Clients</div></div>
+      <div class="stat"><div class="n"><span class="cnt" data-target="24">0</span><span class="u">h</span></div><div class="lbl">Response Time</div></div>
+    </div>
   </div>
-</div>
+</section>
 
 <!-- ── Services ── -->
 <section class="block" id="services">
@@ -437,11 +512,39 @@ footer p.fdesc{font-size:14px;color:#9fb0dc;margin-top:14px;max-width:330px}
   </div>
 </section>
 
+<!-- ── Our Clients ── -->
+<section class="block clients" id="clients">
+  <div class="wrap">
+    <div class="sec-head reveal" style="max-width:760px;margin:0 auto 42px;text-align:center">
+      <span class="eyebrow" data-no="06" style="justify-content:center">Our clients</span>
+      <h2>Trusted by businesses across India</h2>
+      <p>From fast-growing startups to established corporates, finance and HR teams rely on us to keep their compliance accurate and on time.</p>
+    </div>
+    <!--
+      TO ADD REAL CLIENT LOGOS: replace the inner content of any .cli tile with an image, e.g.
+      <div class="cli"><img src="https://your-logo-url/acme.png" alt="Acme Ltd"></div>
+      Keep logos roughly square or wide; they auto-fit. Add/remove tiles as needed.
+    -->
+    <div class="cli-grid reveal">
+      <div class="cli"><span><span class="mono">ST</span><small>Startups</small></span></div>
+      <div class="cli"><span><span class="mono">MF</span><small>Manufacturing</small></span></div>
+      <div class="cli"><span><span class="mono">IT</span><small>IT &amp; SaaS</small></span></div>
+      <div class="cli"><span><span class="mono">RT</span><small>Retail &amp; D2C</small></span></div>
+      <div class="cli"><span><span class="mono">HC</span><small>Healthcare</small></span></div>
+      <div class="cli"><span><span class="mono">LG</span><small>Logistics</small></span></div>
+      <div class="cli"><span><span class="mono">RE</span><small>Real Estate</small></span></div>
+      <div class="cli"><span><span class="mono">FT</span><small>FinTech</small></span></div>
+      <div class="cli"><span><span class="mono">EX</span><small>Exports</small></span></div>
+      <div class="cli"><span><span class="mono">NP</span><small>NGOs &amp; Trusts</small></span></div>
+    </div>
+  </div>
+</section>
+
 <!-- ── Contact / enquiry ── -->
 <section class="block contact" id="contact">
   <div class="wrap contact-grid">
     <div class="cinfo reveal">
-      <span class="eyebrow" data-no="06">Get in touch</span>
+      <span class="eyebrow" data-no="07">Get in touch</span>
       <h2>Let's sort your compliance</h2>
       <p class="intro">Send an enquiry and we'll respond within 24 hours — or message us on WhatsApp for an instant reply.</p>
       <div class="item"><div class="ic">📞</div><div class="t"><b>Phone</b><span><a href="tel:+918285159604">+91 82851 59604</a></span></div></div>
@@ -489,8 +592,7 @@ footer p.fdesc{font-size:14px;color:#9fb0dc;margin-top:14px;max-width:330px}
     <div class="foot-grid">
       <div>
         <a href="#home" class="brand">
-          <span class="mark">S</span>
-          <span class="bt"><b>SMART <span class="red">Compliance</span> Professionals</b><span>Chartered Accountancy &amp; Advisory</span></span>
+          <img class="mark" src="https://raw.githubusercontent.com/smartcomplianceprofessionals-ui/smart-website/main/SMART_Logo-final.png" alt="SMART Compliance Professionals" width="68" height="68">
         </a>
         <p class="fdesc">Taxation, GST, payroll and corporate compliance for businesses, startups and salaried employees across India.</p>
       </div>
@@ -506,6 +608,7 @@ footer p.fdesc{font-size:14px;color:#9fb0dc;margin-top:14px;max-width:330px}
         <h4>Company</h4>
         <a href="#software">ITR Filing Portal</a>
         <a href="#corporate">Corporate Program</a>
+        <a href="#clients">Our Clients</a>
         <a href="#why">Why Us</a>
         <a href="#contact">Contact</a>
         <a href="https://wa.me/918285159604" target="_blank" rel="noopener">WhatsApp</a>
@@ -525,6 +628,40 @@ footer p.fdesc{font-size:14px;color:#9fb0dc;margin-top:14px;max-width:330px}
   WhatsApp
 </a>
 
+<!-- ── Request a call (side tab) ── -->
+<a href="#contact" class="call-tab" aria-label="Request a call back">Request a Call</a>
+
+<!-- ── SMART Assistant chatbot ── -->
+<div class="chat-greet" id="chatGreet" role="button" tabindex="0">
+  <span class="gx" id="greetClose" aria-label="Dismiss">&times;</span>
+  <b>We're online!</b>How may we help you today?
+</div>
+
+<div class="chat-panel" id="chatPanel" role="dialog" aria-label="SMART Assistant chat">
+  <div class="ch">
+    <img class="av" src="https://raw.githubusercontent.com/smartcomplianceprofessionals-ui/smart-website/main/SMART_Logo-final.png" alt="">
+    <div><b>SMART Assistant</b><span class="st">Online now</span></div>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="msg bot">Hi! 👋 I'm the SMART Assistant. How can I help you today? Pick an option below.</div>
+  </div>
+  <div class="quick" id="chatQuick">
+    <button data-q="File my ITR">File my ITR</button>
+    <button data-q="GST help">GST help</button>
+    <button data-q="Pricing">Pricing</button>
+    <button data-q="Talk to a person">Talk to a person</button>
+  </div>
+  <div class="chat-foot">
+    <a class="wa" href="https://wa.me/918285159604?text=Hi%20SMART%20Compliance%20Professionals%2C%20I%27d%20like%20to%20enquire." target="_blank" rel="noopener">Chat on WhatsApp</a>
+    <a class="call" href="#contact">Enquiry form</a>
+  </div>
+</div>
+
+<button class="chat-launch" id="chatLaunch" aria-label="Open chat assistant">
+  <svg class="chat-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+  <svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+</button>
+
 <script>
 /* Mobile menu */
 var burger=document.getElementById('burger'),navl=document.getElementById('navlinks');
@@ -542,6 +679,63 @@ if(!window.matchMedia||!window.matchMedia('(prefers-reduced-motion: reduce)').ma
   },{threshold:.12});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
 }
+
+/* Speaking Numbers — count-up animation */
+var reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function runCounters(){
+  document.querySelectorAll('.cnt').forEach(function(el){
+    var target=parseInt(el.getAttribute('data-target'),10)||0;
+    if(reduceMotion){el.textContent=target.toLocaleString('en-IN');return;}
+    var dur=1700,start=null;
+    function step(ts){
+      if(!start)start=ts;
+      var p=Math.min((ts-start)/dur,1),eased=1-Math.pow(1-p,3);
+      el.textContent=Math.floor(eased*target).toLocaleString('en-IN');
+      if(p<1){requestAnimationFrame(step);}else{el.textContent=target.toLocaleString('en-IN');}
+    }
+    requestAnimationFrame(step);
+  });
+}
+var statsEl=document.querySelector('.stats'),counted=false;
+if(statsEl){
+  var co=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting&&!counted){counted=true;runCounters();co.disconnect();}});
+  },{threshold:.35});
+  co.observe(statsEl);
+}
+
+/* SMART Assistant chatbot */
+var root=document.documentElement,
+    chatLaunch=document.getElementById('chatLaunch'),
+    chatGreet=document.getElementById('chatGreet'),
+    chatBody=document.getElementById('chatBody'),
+    chatQuick=document.getElementById('chatQuick');
+function hideGreet(){chatGreet.classList.remove('show');}
+function openChat(){root.classList.add('chat-open');hideGreet();chatBody.scrollTop=chatBody.scrollHeight;}
+function closeChat(){root.classList.remove('chat-open');}
+chatLaunch.addEventListener('click',function(){root.classList.contains('chat-open')?closeChat():openChat();});
+chatGreet.addEventListener('click',openChat);
+chatGreet.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openChat();}});
+document.getElementById('greetClose').addEventListener('click',function(e){e.stopPropagation();hideGreet();});
+setTimeout(function(){if(!root.classList.contains('chat-open'))chatGreet.classList.add('show');},3500);
+
+function addMsg(html,who){
+  var d=document.createElement('div');d.className='msg '+who;d.innerHTML=html;
+  chatBody.appendChild(d);chatBody.scrollTop=chatBody.scrollHeight;
+}
+var botAnswers={
+  'File my ITR':'We file ITR-1 to ITR-7 for salaried individuals and businesses. Use our guided <a href="#software">ITR portal</a>, or our team can file it for you after reviewing your Form 16. Tap <b>Talk to a person</b> for a callback.',
+  'GST help':'We handle GST registration, monthly GSTR-1 &amp; 3B, annual returns, reconciliation and audit. Share your GSTIN status on WhatsApp and we\u2019ll guide you.',
+  'Pricing':'Fees depend on the service and complexity \u2014 ITR, GST, payroll or full compliance. Share a few details via the <a href="#contact">enquiry form</a> and we\u2019ll send a clear quote within 24 hours.',
+  'Talk to a person':'Sure! The fastest way is WhatsApp \u2014 tap <b>Chat on WhatsApp</b> below, or leave your number in our <a href="#contact">enquiry form</a> and we\u2019ll call you back.'
+};
+chatQuick.querySelectorAll('button').forEach(function(b){
+  b.addEventListener('click',function(){
+    var q=b.getAttribute('data-q');
+    addMsg(q,'user');
+    setTimeout(function(){addMsg(botAnswers[q]||'Thanks! Please use WhatsApp or the enquiry form and we\u2019ll help right away.','bot');},350);
+  });
+});
 
 /* Enquiry form */
 var FORMSPREE_ENDPOINT="https://formspree.io/f/mdavpqrn"; // ← replace yourFormId with your Formspree form ID
