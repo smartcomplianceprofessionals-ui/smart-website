@@ -641,6 +641,12 @@ footer p.fdesc{font-size:14px;color:#9fb0dc;margin-top:14px;max-width:330px}
         <form id="subForm">
           <div class="field"><label>Name</label><input type="text" id="s_name" placeholder="Your name"></div>
           <div class="field"><label>Email <span class="req">*</span></label><input type="email" id="s_email" required placeholder="you@example.com"></div>
+          <div class="field"><label>Mobile Number <span class="req">*</span></label>
+    <div style="display:flex; gap:10px;">
+        <input type="text" id="country_code" value="+91" required style="max-width:80px;">
+        <input type="tel" id="s_mobile" required placeholder="9876543210">
+    </div>
+</div>
           <div class="hp" aria-hidden="true"><label>Company website</label><input type="text" id="s_company" tabindex="-1" autocomplete="off"></div>
           <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Subscribe</button>
           <div class="formmsg" id="subMsg"></div>
