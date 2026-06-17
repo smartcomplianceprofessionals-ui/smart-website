@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://smart-website.smartcomplianceprofessionals.workers.dev/sitemap.xml
